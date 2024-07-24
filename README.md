@@ -3,6 +3,7 @@ Working elaboration of the only close-to-working example of WkWebView's WKScript
 Enables two-way communication between native Swift and javascript in a WkWbView. 
 
 Credit to Jason at https://stackoverflow.com/users/135203/jason
+
 https://stackoverflow.com/questions/65270083/how-does-the-ios-14-api-wkscriptmessagehandlerwithreply-work-for-communicating-w
 
 Got it working, flipped it to Swiftui, and added echoing the javascript console to the calling html page.
