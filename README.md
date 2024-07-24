@@ -6,9 +6,9 @@ Credit to Jason at https://stackoverflow.com/users/135203/jason
 
 https://stackoverflow.com/questions/65270083/how-does-the-ios-14-api-wkscriptmessagehandlerwithreply-work-for-communicating-w
 
-Got it working, flipped it to Swiftui, and added echoing the javascript console to the calling html page.
+Got it working, flipped it to Swiftui from UIKit, and added echoing of the javascript console to the calling html page.
 
-Documentation for WKScriptMessageHandlerWithReply largely non-existent and most people - like get me - could request and retrieve a javscript message but coulding respond to thre message for two-way communication  without getting a seemingly untraceable error:
+Documentation for WKScriptMessageHandlerWithReply largely non-existent and for most people - like me - could request and retrieve a javscript message but coulding respond to thre message for two-way communication without getting a seemingly untraceable error:
 "JavaScript evaluation error: Error Domain=WKErrorDomain Code=5 "JavaScript execution returned a result of an unsupported type" UserInfo={NSLocalizedDescription=JavaScript execution returned a result of an unsupported type}."
 
 Years of thrashing about @Sendable data types and @MainActor and threading. Nope.
