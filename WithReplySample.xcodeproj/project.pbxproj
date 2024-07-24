@@ -15,6 +15,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				"WKScriptMessageHandlerWithReply-1.jpeg",
 			);
 			target = EC17CE7B2C508C17003B8964 /* WithReplySample */;
 		};
