@@ -25,7 +25,14 @@ struct ViewController: UIViewRepresentable {
                 
                 print("namespaceWithinTheInjectedJSCode WkScriptMessage body: \(messageBody)")
                 print("Calling replyHandler with 2.2 as the return value and nil as the err string.")
-                replyHandler(2.2, nil) // first var is success return val, second is err string if error
+                
+                // Mentally translate replyHandler: (Any?, String?) into replyHandler: (result: Any?, err: String?)
+                // If a string - anything other than nil - is provided in the second parameter (err) of replyHandler (result: Any?, err: String?), the errorFunc( err ) is run in javascript. err takes priority over result. The plumbing is hidden.
+                //If a value for  result: Any is provided with nil for err, successFunc( result ) is run in javascript.
+                
+                replyHandler(2.2,nil) // first var is success return val, second is err string if error
+                //replyHandler(nil,"2.2") // first var is success return val, second is err string if error
+                
             }
         }
     }
