@@ -1,0 +1,15 @@
+<html>
+    <meta name="viewport" content="width=device-width" />
+        <script>
+            function handleInfoFromApp( fromApp ){
+                document.getElementById("valToWrite").innerHTML = fromApp;
+            }
+            function handleError( err ){
+            
+            }
+        </script>
+
+    <h1 id="valToWrite">Hello</h1>
+    <button onclick="sampleMethodTheHTMLCanCall( 'inputInfo', handleInfoFromApp, handleError )">Load Info from App</button>
+    
+</html>

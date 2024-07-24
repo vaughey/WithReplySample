@@ -1,15 +1,94 @@
-<html>
-    <meta name="viewport" content="width=device-width" />
-        <script>
-            function handleInfoFromApp( fromApp ){
-                document.getElementById("valToWrite").innerHTML = fromApp;
-            }
-            function handleError( err ){
-            
-            }
-        </script>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console Log Watcher</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .messages {
+            list-style-type: none;
+            padding: 0;
+        }
+        .messages li {
+            margin: 5px 0;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        .log {
+            background-color: #f0f0f0;
+        }
+        .error {
+            background-color: #ffe6e6;
+            color: #d9534f;
+        }
+        .warn {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
     <h1 id="valToWrite">Hello</h1>
-    <button onclick="sampleMethodTheHTMLCanCall( 'inputInfo', handleInfoFromApp, handleError )">Load Info from App</button>
+    <button onclick="sampleMethodTheHTMLCanCall('inputInfo', handleInfoFromApp, handleError)">Load Info from App</button>
     
+    <h3>Console Logs</h3>
+    <ul class="messages"></ul>
+
+    <script>
+        function captureConsoleLogs() {
+            var oldLog = console.log;
+            var oldError = console.error;
+            var oldWarn = console.warn;
+
+            console.log = function() {
+                var args = Array.from(arguments);
+                $('ul.messages').append('<li class="log">Log: ' + args.join(' ') + '</li>');
+                oldLog.apply(console, args);
+            };
+
+            console.error = function() {
+                var args = Array.from(arguments);
+                $('ul.messages').append('<li class="error">Error: ' + args.join(' ') + '</li>');
+                oldError.apply(console, args);
+            };
+
+            console.warn = function() {
+                var args = Array.from(arguments);
+                $('ul.messages').append('<li class="warn">Warn: ' + args.join(' ') + '</li>');
+                oldWarn.apply(console, args);
+            };
+        }
+
+        captureConsoleLogs();
+
+        function sampleMethodTheHTMLCanCall(inputInfo, successFunc, errorFunc) {
+            var promise = window.webkit.messageHandlers.namespaceWithinTheInjectedJSCode.postMessage(inputInfo);
+
+            promise.then(
+                function(result) {
+                    console.log(result); // "Stuff worked!"
+                    successFunc(result);
+                },
+                function(err) {
+                    console.error(err); // Error: "It broke"
+                    errorFunc(err);
+                }
+            );
+        }
+
+        function handleInfoFromApp(info) {
+            console.log("Received info from app:", info);
+            document.getElementById("valToWrite").innerText = info;
+        }
+
+        function handleError(error) {
+            console.error("An error occurred:", error);
+        }
+    </script>
+</body>
 </html>
