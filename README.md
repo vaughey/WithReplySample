@@ -1,6 +1,6 @@
-Working elaboration of the only close-to-working example of WkWebView's WKScriptMessageHandlerWithReply protocol instead of WKScriptMessageHandler.
+Working elaboration of the only close-to-working example of WkWebView's WKScriptMessageHandlerWithReply protocol that I've ever found. 
 
-Enables two-way communication between native Swift and javascript in a WkWebView. 
+WKScriptMessageHandlerWithReply - versus WKScriptMessageHandler - enables two-way communication between native Swift and javascript in a WkWebView. 
 
 Credit to Jason at https://stackoverflow.com/users/135203/jason
 
