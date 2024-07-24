@@ -34,9 +34,9 @@
 </head>
 <body>
     <h1 id="valToWrite">Hello</h1>
-    <button onclick="sampleMethodTheHTMLCanCall('inputInfo', handleInfoFromApp, handleError)">Load Info from App</button>
+    <button onclick="sampleMethodTheHTMLCanCall('inputInfo', handleInfoFromApp, handleError)">Load Info from App by calling: "HTML button onclick=sampleMethodTheHTMLCanCall('inputInfo', handleInfoFromApp, handleError)" </button>
     
-    <h3>Console Logs</h3>
+    <h3>Echo Javascript Console Messages</h3>
     <ul class="messages"></ul>
 
     <script>
@@ -66,28 +66,13 @@
 
         captureConsoleLogs();
 
-        function sampleMethodTheHTMLCanCall(inputInfo, successFunc, errorFunc) {
-            var promise = window.webkit.messageHandlers.namespaceWithinTheInjectedJSCode.postMessage(inputInfo);
-
-            promise.then(
-                function(result) {
-                    console.log(result); // "Stuff worked!"
-                    successFunc(result);
-                },
-                function(err) {
-                    console.error(err); // Error: "It broke"
-                    errorFunc(err);
-                }
-            );
-        }
-
         function handleInfoFromApp(info) {
-            console.log("Received info from app:", info);
+            console.log("HTML function handleInfoFromApp(info): Received info from SWIFT app:", info);
             document.getElementById("valToWrite").innerText = info;
         }
 
         function handleError(error) {
-            console.error("An error occurred:", error);
+            console.error("HTML function handleError(error): An error occurred:", error);
         }
     </script>
 </body>
